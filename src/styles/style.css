@@ -1,0 +1,48 @@
+/* src/styles/style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  #board {
+    display: inline-block;
+    margin: 20px auto;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .cell.player-1 {
+    background-color: red;
+  }
+  
+  .cell.player-2 {
+    background-color: yellow;
+  }
+  
+  #reset {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #reset:hover {
+    background-color: #0056b3;
+  }
+  
