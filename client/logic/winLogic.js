@@ -1,13 +1,19 @@
 // client/logic/winLogic.js
+
+// Constants
+const WINNING_LENGTH = 4;
+
+// Check if there is a winner on the board
 export function checkWinner(board) {
   const rows = board.length;
   const cols = board[0].length;
 
+  // Check a specific direction for a win
   function checkDirection(x, y, dx, dy) {
     const player = board[x][y];
     if (player === 0) return null;
     const winningTiles = [{ x, y }];
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < WINNING_LENGTH; i++) {
       const newX = x + dx * i;
       const newY = y + dy * i;
       if (
@@ -24,6 +30,7 @@ export function checkWinner(board) {
     return winningTiles;
   }
 
+  // Iterate through the board to find a winner
   for (let x = 0; x < rows; x++) {
     for (let y = 0; y < cols; y++) {
       const directions = [

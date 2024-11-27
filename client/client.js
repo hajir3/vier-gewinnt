@@ -2,15 +2,20 @@
 import { renderBoard, resetBoard } from './components/board.js';
 import { checkWinner } from './logic/winLogic.js';
 
+// Constants
 const ROWS = 6;
 const COLUMNS = 7;
 const PLAYER_ONE = 1;
 const PLAYER_TWO = 2;
+const WINNING_IMAGE_PLAYER_ONE = 'url("./assets/images/cat-pop-win.gif")';
+const WINNING_IMAGE_PLAYER_TWO = 'url("./assets/images/cat-vibe-win.gif")';
+const WIN_IMAGE = './assets/images/grumpy-cat.png';
 
 let board = Array(ROWS).fill(null).map(() => Array(COLUMNS).fill(0));
 let currentPlayer = PLAYER_ONE;
 let gameOver = false;
 
+// Initialize the game
 function initGame() {
   const boardContainer = document.getElementById('board');
   const message = document.getElementById('message');
@@ -27,6 +32,7 @@ function initGame() {
   removeWinningMessage();
 }
 
+// Remove confetti
 function removeConfetti() {
   const confetti = document.querySelector('.confetti');
   if (confetti) {
@@ -34,6 +40,7 @@ function removeConfetti() {
   }
 }
 
+// Remove winning message
 function removeWinningMessage() {
   const winningMessage = document.querySelector('.winning-message');
   if (winningMessage) {
@@ -41,6 +48,7 @@ function removeWinningMessage() {
   }
 }
 
+// Handle cell click
 function handleCellClick(column) {
   if (gameOver) return;
 
@@ -61,11 +69,13 @@ function handleCellClick(column) {
   }
 }
 
+// Update the board
 function updateBoard() {
   const boardContainer = document.getElementById('board');
   renderBoard(boardContainer, board, handleCellClick);
 }
 
+// Declare the winner
 function declareWinner(result) {
   const { player, tiles } = result;
   const message = document.getElementById('message');
@@ -77,15 +87,17 @@ function declareWinner(result) {
   displayWinningMessage(player);
 }
 
+// Highlight winning tiles
 function highlightWinningTiles(player, tiles) {
   const boardContainer = document.getElementById('board');
-  const winningImage = player === PLAYER_ONE ? 'url("./assets/images/cat-pop-win.gif")' : 'url("./assets/images/cat-vibe-win.gif")';
+  const winningImage = player === PLAYER_ONE ? WINNING_IMAGE_PLAYER_ONE : WINNING_IMAGE_PLAYER_TWO;
   tiles.forEach(({ x, y }) => {
     const cellElement = boardContainer.querySelector(`.row:nth-child(${x + 1}) .cell:nth-child(${y + 1})`);
     cellElement.style.backgroundImage = winningImage;
   });
 }
 
+// Show confetti
 function showConfetti() {
   const boardContainer = document.getElementById('board');
   const confetti = document.createElement('div');
@@ -93,20 +105,22 @@ function showConfetti() {
   boardContainer.appendChild(confetti);
 }
 
+// Display winning message
 function displayWinningMessage(player) {
   const winningMessage = document.createElement('div');
   winningMessage.classList.add('winning-message');
-  const playerImage = './assets/images/grumpy-cat.png';
-  winningMessage.innerHTML = `<img src="${playerImage}" alt="Player ${player} wins!"><p>Player ${player} won!<br>But who cares...</p>`;
+  winningMessage.innerHTML = `<img src="${WIN_IMAGE}" alt="Player ${player} wins!"><p>Player ${player} won!<br>But who cares...</p>`;
   document.body.appendChild(winningMessage);
 }
 
+// Switch player
 function switchPlayer() {
   currentPlayer = currentPlayer === PLAYER_ONE ? PLAYER_TWO : PLAYER_ONE;
   const message = document.getElementById('message');
   message.textContent = `Player ${currentPlayer}'s turn`;
 }
 
+// Event listeners for DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
   const resetButton = document.getElementById('reset');
   const loadButton = document.getElementById('load');
