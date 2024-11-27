@@ -1,29 +1,27 @@
 // client/components/board.js
+import { createCell } from './cell.js';
 
 // Render the game board
 export function renderBoard(container, board, onCellClick) {
-    container.innerHTML = ''; // Clear existing board
-  
-    board.forEach((row) => {
-      const rowDiv = document.createElement('div');
-      rowDiv.className = 'row';
-  
-      row.forEach((cell, colIndex) => {
-        const cellDiv = document.createElement('div');
-        cellDiv.className = `cell player-${cell}`;
-        cellDiv.dataset.column = colIndex;
-  
-        // Add click event listener for each cell
-        cellDiv.addEventListener('click', () => onCellClick(colIndex));
-        rowDiv.appendChild(cellDiv);
-      });
-  
-      container.appendChild(rowDiv);
-    });
+  // Clear the container
+  container.innerHTML = '';
+
+  // Create the board
+  for (let row = 0; row < board.length; row++) {
+    const rowElement = document.createElement('div');
+    rowElement.classList.add('row');
+
+    for (let col = 0; col < board[row].length; col++) {
+      const cellElement = createCell(board[row][col], col, onCellClick);
+      rowElement.appendChild(cellElement);
+    }
+
+    container.appendChild(rowElement);
   }
-  
-  // Reset the game board
-  export function resetBoard(board) {
-    return board.map(row => row.fill(0));
-  }
-  
+}
+
+// client/components/board.js
+
+export function resetBoard(board) {
+  return board.map(row => row.map(() => 0));
+}
