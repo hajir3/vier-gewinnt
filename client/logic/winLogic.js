@@ -1,5 +1,3 @@
-// src/logic/winLogic.js
-
 export function checkWinner(board) {
   const rows = board.length;
   const cols = board[0].length;
@@ -10,7 +8,13 @@ export function checkWinner(board) {
     for (let i = 1; i < 4; i++) {
       const newX = x + dx * i;
       const newY = y + dy * i;
-      if (newX < 0 || newX >= rows || newY < 0 || newY >= cols || board[newX][newY] !== player) {
+      if (
+        newX < 0 ||
+        newX >= rows ||
+        newY < 0 ||
+        newY >= cols ||
+        board[newX][newY] !== player
+      ) {
         return false;
       }
     }
@@ -23,7 +27,7 @@ export function checkWinner(board) {
         checkDirection(x, y, 0, 1) || // Horizontal
         checkDirection(x, y, 1, 0) || // Vertical
         checkDirection(x, y, 1, 1) || // Diagonal (down-right)
-        checkDirection(x, y, 1, -1)   // Diagonal (down-left)
+        checkDirection(x, y, 1, -1) // Diagonal (down-left)
       ) {
         return board[x][y];
       }

@@ -1,4 +1,4 @@
-// src/components/board.js
+// client/components/board.js
 
 // Render the game board
 export function renderBoard(container, board, onCellClick) {

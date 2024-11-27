@@ -1,1 +1,3 @@
 # vier-gewinnt
+
+## Architecture decisions
