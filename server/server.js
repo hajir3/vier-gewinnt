@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { checkWinner } from '../client/logic/winLogic.js';
+import { checkWinner } from '../client/models/winLogic.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,8 +14,13 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, '../client')));
 
 // Serve the main HTML file
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, '../client', 'index.html'));
+});
+
+// Serve the favicon.ico file
+app.get('/favicon.ico', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../client/assets/favicons', 'favicon.ico'));
 });
 
 // Endpoint to check for a winner

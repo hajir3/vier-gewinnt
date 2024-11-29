@@ -1,4 +1,4 @@
-// client/logic/winLogic.js
+// client/models/winLogic.js
 
 // Constants
 const WINNING_LENGTH = 4;

@@ -1,4 +1,4 @@
-// client/components/board.js
+// client/views/components/board.js
 import { createCell } from './cell.js';
 
 // Render the game board
@@ -19,8 +19,6 @@ export function renderBoard(container, board, onCellClick) {
     container.appendChild(rowElement);
   }
 }
-
-// client/components/board.js
 
 export function resetBoard(board) {
   return board.map(row => row.map(() => 0));

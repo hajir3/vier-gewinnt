@@ -1,8 +1,8 @@
-// client/components/cell.js
+// client/views/components/cell.js
 
 // Constants
-const PLAYER_ONE_IMAGE = 'url("./assets/images/cat-pop.gif")';
-const PLAYER_TWO_IMAGE = 'url("./assets/images/cat-vibe.gif")';
+const PLAYER_ONE_IMAGE = 'url("../../assets/images/cat-pop.gif")';
+const PLAYER_TWO_IMAGE = 'url("../../assets/images/cat-vibe.gif")';
 
 // Create a cell element
 export function createCell(player, col, onCellClick) {
