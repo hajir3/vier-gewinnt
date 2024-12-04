@@ -15,7 +15,6 @@ export function renderBoard(container, board, onCellClick) {
       const cellElement = createCell(board[row][col], col, onCellClick);
       rowElement.appendChild(cellElement);
     }
-
     container.appendChild(rowElement);
   }
 }

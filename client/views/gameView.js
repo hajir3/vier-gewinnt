@@ -28,6 +28,7 @@ class GameView {
 
   updateBoard(board, handleCellClick) {
     renderBoard(this.boardContainer, board, handleCellClick);
+    console.log("Updating board in view:", board);
   }
 
   declareWinner(player, tiles) {
@@ -39,7 +40,8 @@ class GameView {
   }
 
   highlightWinningTiles(player, tiles) {
-    const winningImage = player === 1 ? WINNING_IMAGE_PLAYER_ONE : WINNING_IMAGE_PLAYER_TWO;
+    const winningImage =
+      player === 1 ? WINNING_IMAGE_PLAYER_ONE : WINNING_IMAGE_PLAYER_TWO;
     tiles.forEach(({ x, y }) => {
       const cellElement = this.boardContainer.querySelector(
         `.row:nth-child(${x + 1}) .cell:nth-child(${y + 1})`
@@ -76,28 +78,28 @@ class GameView {
   }
 
   displaySavedGames(savedGames, onLoadGame, onDeleteGame) {
-    let savedGamesContainer = document.querySelector('.saved-games-container');
+    let savedGamesContainer = document.querySelector(".saved-games-container");
 
     if (!savedGamesContainer) {
-      savedGamesContainer = document.createElement('div');
-      savedGamesContainer.classList.add('saved-games-container');
+      savedGamesContainer = document.createElement("div");
+      savedGamesContainer.classList.add("saved-games-container");
       document.body.appendChild(savedGamesContainer);
     } else {
-      savedGamesContainer.innerHTML = '';
+      savedGamesContainer.innerHTML = "";
     }
 
     savedGames.forEach((game, index) => {
-      const gameElement = document.createElement('div');
-      gameElement.classList.add('saved-game');
+      const gameElement = document.createElement("div");
+      gameElement.classList.add("saved-game");
       gameElement.textContent = `Game ${index + 1}`;
 
-      const loadButton = document.createElement('button');
-      loadButton.textContent = 'Load';
-      loadButton.addEventListener('click', () => onLoadGame(game));
+      const loadButton = document.createElement("button");
+      loadButton.textContent = "Load";
+      loadButton.addEventListener("click", () => onLoadGame(game));
 
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Delete';
-      deleteButton.addEventListener('click', () => onDeleteGame(index));
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.addEventListener("click", () => onDeleteGame(index));
 
       gameElement.appendChild(loadButton);
       gameElement.appendChild(deleteButton);
@@ -105,7 +107,7 @@ class GameView {
     });
 
     // Stop propagation for clicks inside the container
-    savedGamesContainer.addEventListener('click', (event) => {
+    savedGamesContainer.addEventListener("click", (event) => {
       event.stopPropagation();
     });
 
@@ -113,12 +115,12 @@ class GameView {
       if (!savedGamesContainer.contains(event.target)) {
         event.stopPropagation();
         savedGamesContainer.remove();
-        document.removeEventListener('click', closeSavedGamesContainer, true);
+        document.removeEventListener("click", closeSavedGamesContainer, true);
       }
     };
 
     setTimeout(() => {
-      document.addEventListener('click', closeSavedGamesContainer, true);
+      document.addEventListener("click", closeSavedGamesContainer, true);
     }, 0);
   }
 }

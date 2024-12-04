@@ -8,15 +8,21 @@ const PLAYER_TWO = 2;
 
 class GameModel {
   constructor() {
-    this.board = Array(ROWS).fill(null).map(() => Array(COLUMNS).fill(0));
+    this.board = Array(ROWS)
+      .fill(null)
+      .map(() => Array(COLUMNS).fill(0));
     this.currentPlayer = PLAYER_ONE;
     this.gameOver = false;
+    this.history = []; // Add this line
   }
 
   initGame() {
-    this.board = Array(ROWS).fill(null).map(() => Array(COLUMNS).fill(0));
+    this.board = Array(ROWS)
+      .fill(null)
+      .map(() => Array(COLUMNS).fill(0));
     this.currentPlayer = PLAYER_ONE;
     this.gameOver = false;
+    this.history = []; // Add this line
   }
 
   handleCellClick(column) {
@@ -24,6 +30,7 @@ class GameModel {
 
     for (let row = this.board.length - 1; row >= 0; row--) {
       if (this.board[row][column] === 0) {
+        this.history.push(this.getGameState()); // Add this line
         this.board[row][column] = this.currentPlayer;
 
         const result = checkWinner(this.board);
@@ -39,12 +46,16 @@ class GameModel {
   }
 
   switchPlayer() {
-    this.currentPlayer = this.currentPlayer === PLAYER_ONE ? PLAYER_TWO : PLAYER_ONE;
+    this.currentPlayer =
+      this.currentPlayer === PLAYER_ONE ? PLAYER_TWO : PLAYER_ONE;
   }
 
   getGameState() {
-    return { board: this.board, currentPlayer: this.currentPlayer, gameOver: this.gameOver };
+    return {
+      board: this.board,
+      currentPlayer: this.currentPlayer,
+      gameOver: this.gameOver,
+    };
   }
 }
-
 export default GameModel;
