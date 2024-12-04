@@ -82,7 +82,7 @@ body {
   align-items: center;
   flex-grow: 1;
   flex-direction: column;
-  background-image: url('../images/background.webp');
+  background-image: url('../images/background.png');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -143,4 +143,25 @@ body {
   max-width: 100px;
   display: block;
   margin: 0 auto 10px;
+}
+
+.saved-games-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1000;
+}
+
+.saved-game {
+  margin-bottom: 10px;
+}
+
+.saved-game button {
+  margin-left: 10px;
 }
