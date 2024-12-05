@@ -23,6 +23,9 @@ class GameController {
     document
       .getElementById("save")
       .addEventListener("click", this.saveGame.bind(this));
+    document
+      .getElementById("undo")
+      .addEventListener("click", this.undo.bind(this));
   }
 
   handleCellClick(column) {
@@ -35,6 +38,13 @@ class GameController {
         this.view.message.textContent = `Player ${result.currentPlayer}'s turn`;
       }
     }
+  }
+
+  undo() {
+    this.model.undo();
+    const { board, currentPlayer } = this.model.getGameState();
+    this.view.initDOM(board, this.handleCellClick);
+    this.view.message.textContent = `Player ${currentPlayer}'s turn`;
   }
 
   resetGame() {

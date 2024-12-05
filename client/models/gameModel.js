@@ -13,7 +13,7 @@ class GameModel {
       .map(() => Array(COLUMNS).fill(0));
     this.currentPlayer = PLAYER_ONE;
     this.gameOver = false;
-    this.history = []; // Add this line
+    this.history = [];
   }
 
   initGame() {
@@ -22,7 +22,7 @@ class GameModel {
       .map(() => Array(COLUMNS).fill(0));
     this.currentPlayer = PLAYER_ONE;
     this.gameOver = false;
-    this.history = []; // Add this line
+    this.history = [];
   }
 
   handleCellClick(column) {
@@ -30,7 +30,7 @@ class GameModel {
 
     for (let row = this.board.length - 1; row >= 0; row--) {
       if (this.board[row][column] === 0) {
-        this.history.push(this.getGameState()); // Add this line
+        this.history.push(JSON.parse(JSON.stringify(this.getGameState())));
         this.board[row][column] = this.currentPlayer;
 
         const result = checkWinner(this.board);
@@ -38,10 +38,18 @@ class GameModel {
           this.gameOver = true;
           return { winner: result };
         }
-
         this.switchPlayer();
         return { board: this.board, currentPlayer: this.currentPlayer };
       }
+    }
+  }
+
+  undo() {
+    if (this.history.length > 0) {
+      const previousState = this.history.pop();
+      this.board = previousState.board;
+      this.currentPlayer = previousState.currentPlayer;
+      this.gameOver = previousState.gameOver;
     }
   }
 
@@ -58,4 +66,5 @@ class GameModel {
     };
   }
 }
+
 export default GameModel;

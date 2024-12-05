@@ -27,8 +27,9 @@ class GameView {
   }
 
   updateBoard(board, handleCellClick) {
+    this.boardContainer.innerHTML = ""; // Clear the container
+
     renderBoard(this.boardContainer, board, handleCellClick);
-    console.log("Updating board in view:", board);
   }
 
   declareWinner(player, tiles) {
