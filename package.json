@@ -16,15 +16,25 @@
     "connect four",
     "game",
     "board game",
-    "javascript"
+    "javascript",
+    "connect four cats"
   ],
-  "author": "Hajir Ismaili <ismhaj01@students.zhaw.ch>",
+  "contributors": [
+    {
+      "name": "Hajir Ismaili",
+      "email": "ismhaj01@students.zhaw.ch"
+    },
+    {
+      "name": "Sivashan Sivakumaran",
+      "email": "sivaksiv@students.zhaw.ch"
+    }
+  ],
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/hajir3/vier-gewinnt"
   },
-  "bugs": {
+  "bugs": { 
     "url": "https://github.com/hajir3/vier-gewinnt/issues"
   },
   "devDependencies": {
